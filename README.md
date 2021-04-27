@@ -10,7 +10,7 @@ A skeleton project which I use for almost all of my C++ projects.
 #### Additional Dependencies:
 - Visual Studio 2019 or MSBuild on PATH with C++ compiler  
   
-Usage:  
+#### Usage:  
 - Use the built-in command line tool `cli gen` to generate a Visual Studio 2019 solution and project.  
 - Use the command `cli build` which will build the project using MSBuild for Windows x64.  
 - Use `cli run` to run the project.  
@@ -21,7 +21,7 @@ Usage:
 - Make  
 - Alias in ~/.bash_aliases for `./cli.sh` to `cli` - alternatively use all commands as `./cli.sh command`.  
   
-Usage:  
+#### Usage:  
 - Use the built-in command line tool `cli gen` to generate project Makefiles.  
 - Use the command `cli build` which will build the project using Make and g++ for Linux x64.  
 - Use `cli run` to run the project.  
