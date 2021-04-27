@@ -1,5 +1,6 @@
 # Project Skeleton  
 A skeleton project which I use for almost all of my C++ projects.  
+Includes a logging class (simple abstraction of spdlog) and a simple profiler.
   
 ## Build:
 #### Global Dependencies:
