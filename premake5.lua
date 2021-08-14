@@ -20,6 +20,7 @@ project "project"
 
     targetdir(tdir)
     objdir(odir)
+    debugdir("data")
 
     files
     {
