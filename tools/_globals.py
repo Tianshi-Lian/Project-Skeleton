@@ -15,7 +15,7 @@ if 'linux' in PLATFORM: # we could be linux or linux2
 elif 'win' in PLATFORM:
     PLATFORM = 'windows'
 
-build_meta = open("build.meta")
+build_meta = open("{}/{}.build.meta".format(BUILD_PRJ_NAME, BUILD_PRJ_NAME))
 version_lines = build_meta.readlines()
 for line in version_lines:
     # TODO: Possibly have a way to check for a version upgrade and reset "smaller" values?

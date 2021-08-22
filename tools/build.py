@@ -6,6 +6,7 @@ import sys
 
 args = _helpers.process_args(sys.argv)
 config = _helpers.get_arg_value(args, ["config", "c"], _globals.BUILD_CFG)
+project = _helpers.get_arg_value(args, ["project", "p"], _globals.BUILD_PRJ_NAME)
 
 exit_code = 0
 if _globals.PLATFORM == "linux":
@@ -15,7 +16,7 @@ elif _globals.PLATFORM == "windows":
     process = subprocess.run(["msbuild", "/property:Configuration={}".format(config)])
     exit_code = process.returncode
 
-build_meta = open("build.meta", 'w')
+build_meta = open("{}/{}.build.meta".format(project, project), 'w')
 versioning_meta = ["MAJOR {}\n".format(_globals.V_MAJOR), "MINOR {}\n".format(_globals.V_MINOR), "PATCH {}\n".format(_globals.V_PATCH), "BUILD {}".format(_globals.V_BUILD + 1)]
 build_meta.writelines(versioning_meta)
 

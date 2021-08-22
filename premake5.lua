@@ -88,7 +88,7 @@ project "project"
 		
 		postbuildcommands
 		{
-			"{COPY} ../build.meta ../" .. tdir
+			"{COPY} ../%{prj.name}/%{prj.name}.build.meta ../" .. tdir
 		}
 
     filter "configurations:release"
