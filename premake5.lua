@@ -43,7 +43,7 @@ project "project"
 
 	postbuildcommands
 	{
-		"call python ../tools/_postbuild.py project=%{prj.name}",
+		"python ../tools/_postbuild.py project=%{prj.name}",
 		"{COPY} %{prj.name}.build.meta ../" .. tdir,
 	}
 
