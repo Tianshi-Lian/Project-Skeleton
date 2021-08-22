@@ -81,6 +81,7 @@ project "project"
     filter "configurations:debug"
         runtime "Debug"
         symbols "on"
+		
         defines
         {
             "PS_DEBUG"
@@ -95,3 +96,13 @@ project "project"
         runtime "Release"
         symbols "off"
         optimize "on"
+		
+		defines
+        {
+            "PS_RELEASE"
+        }
+		
+		postbuildcommands
+		{
+			"{COPY} ../%{prj.name}/%{prj.name}.build.meta ../" .. tdir
+		}
