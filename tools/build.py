@@ -16,11 +16,4 @@ elif _globals.PLATFORM == "windows":
     process = subprocess.run(["msbuild", "/property:Configuration={}".format(config)])
     exit_code = process.returncode
 
-metaDataFile = "{}/{}.build.meta".format(project, project)
-currentVersion = _helpers.read_version(metaDataFile)
-build_meta = open(metaDataFile, 'w')
-versioning_meta = ["MAJOR {}\n".format(currentVersion.MAJOR), "MINOR {}\n".format(currentVersion.MINOR), "PATCH {}\n".format(currentVersion.PATCH), "BUILD {}".format(currentVersion.BUILD + 1)]
-build_meta.writelines(versioning_meta)
-build_meta.close()
-
 sys.exit(exit_code)

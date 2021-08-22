@@ -32,17 +32,28 @@ project "project"
     sysincludedirs
     {
         "vendor/src",
-        "vendor/include"
+        "vendor/include",
+        "%{prj.name}/vendor",
     }
 
     includedirs
     {
-        "%{prj.name}/src",
-        "%{prj.name}/include"
+        "%{prj.name}/include",
     }
+
+	postbuildcommands
+	{
+		"call python ../tools/_postbuild.py project=%{prj.name}",
+		"{COPY} %{prj.name}.build.meta ../" .. tdir,
+	}
 
     filter "system:windows"
         systemversion "latest"
+
+        files
+        {
+            "%{prj.name}/vendor/**.natvis",
+        }
 
         links
         {
@@ -57,12 +68,11 @@ project "project"
         postbuildcommands
         {
             "{COPY} ../vendor/bin/*.dll ../" .. tdir,
-            "{COPY} ../data/ ../" .. tdir .. "/data/"
         }
 
         debugdir(tdir)
 
-    filter "system:linux"    
+    filter "system:linux"
         links
         {
             "spdlog"
@@ -72,37 +82,22 @@ project "project"
         {
             "PS_LINUX"
         }
-        
-        postbuildcommands
-        {
-            "{COPY} ../data/* ../" .. tdir .. "/data/"
-        }
 
     filter "configurations:debug"
         runtime "Debug"
         symbols "on"
-		
+
         defines
         {
             "PS_DEBUG"
         }
-		
-		postbuildcommands
-		{
-			"{COPY} ../%{prj.name}/%{prj.name}.build.meta ../" .. tdir
-		}
 
     filter "configurations:release"
         runtime "Release"
         symbols "off"
         optimize "on"
-		
+
 		defines
         {
             "PS_RELEASE"
         }
-		
-		postbuildcommands
-		{
-			"{COPY} ../%{prj.name}/%{prj.name}.build.meta ../" .. tdir
-		}
